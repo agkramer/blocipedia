@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Wiki</th>
+      <th>Edit</th>
+      <th>Delete</ht>
+    </tr>
+  </thead>
+
+  <br>
+  <% @wikis.each do |wiki| %>
+    <tbody>
+      <tr>
+        <td><%= link_to wiki.title, wiki %></td>
+        <td><%= link_to "Edit", edit_wiki_path(wiki), class: 'btn btn-success btn-sm' %></td>
+        <td><%= link_to "Delete", [wiki], method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: 'Are you sure you want to delete this wiki?'} %></td>
+      </tr>
+    </tbody>
+  <% end %>
+</table>
