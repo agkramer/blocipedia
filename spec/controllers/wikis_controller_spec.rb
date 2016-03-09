@@ -1,5 +1,3 @@
-describe WikisController do
-
   # think this:
   # describe "#index" do
   #   it "should return an array of Wikis" do
@@ -18,7 +16,7 @@ RSpec.describe WikisController, type: :controller do
   let(:user) { User.create!(email: "user@blocipedia.com", password: "helloworld") }
   let(:my_wiki) { Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
 
-  describe "GET #index" do
+  describe "GET index" do
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
@@ -30,7 +28,7 @@ RSpec.describe WikisController, type: :controller do
     end
   end
 
-  describe "GET #show" do
+  describe "GET show" do
     it "returns http success" do
       get :show, {id: my_wiki.id}
       expect(response).to have_http_status(:success)
@@ -47,7 +45,7 @@ RSpec.describe WikisController, type: :controller do
     end
   end
 
-  describe "GET #new" do
+  describe "GET new" do
     it "returns http success" do
       get :new
       expect(response).to have_http_status(:success)
@@ -102,23 +100,20 @@ RSpec.describe WikisController, type: :controller do
   end
 
   describe "PUT update" do
+    before do
+      @new_title = RandomData.random_sentence
+      @new_body = RandomData.random_paragraph
+      put :update, id: my_wiki.id, wiki: {title: @new_title, body: @new_body}
+    end
+
     it "updates the wiki with expected attributes" do
-      new_title = RandomData.random_sentence
-      new_body = "new body for updated wiki"
-
-      put :update, id: my_wiki.id, wiki: {title: new_title, body: "new body for updated wiki"}
-
       updated_wiki = assigns(:wiki)
       expect(updated_wiki.id).to eq my_wiki.id
-      expect(updated_wiki.title).to eq new_title
-      expect(updated_wiki.body).to eq new_body
+      expect(updated_wiki.title).to eq @new_title
+      expect(updated_wiki.body).to eq @new_body
     end
 
     it "redirects to the updated post" do
-      new_title = RandomData.random_sentence
-      new_body = RandomData.random_paragraph
-
-      put :update, id: my_wiki.id, wiki: {title: new_title, body: new_body}
       expect(response).to redirect_to [my_wiki]
     end
   end
@@ -133,7 +128,6 @@ RSpec.describe WikisController, type: :controller do
     it "redirects to the wiki index" do
       delete :destroy, id: my_wiki.id
       expect(response).to redirect_to wikis_path
->>>>>>> adding-wikis
     end
   end
 end

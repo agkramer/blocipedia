@@ -35,7 +35,7 @@ class WikisController < ApplicationController
       flash[:notice] = "Wiki has been updated."
       redirect_to @wiki
     else
-      flash[:alert] = "Error saving Wiki.  Please try again."
+      flash.now[:alert] = "Error saving Wiki.  Please try again."
       render :edit
     end
   end
@@ -55,6 +55,6 @@ class WikisController < ApplicationController
 
   private
   def wiki_params
-    params.require(:wiki).permit(:title, :body, :public)
+    params.require(:wiki).permit(:title, :body, :private)
   end
 end
