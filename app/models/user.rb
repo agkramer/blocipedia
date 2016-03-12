@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
 
   has_many :wikis
 
+  after_initialize { self.role ||= "standard" }
+
+  ROLES = %w[standard premium admin]
+
 end
