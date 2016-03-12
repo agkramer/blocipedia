@@ -13,7 +13,7 @@ include RandomData
 
 RSpec.describe WikisController, type: :controller do
 
-  let(:user) { User.create!(email: "user@blocipedia.com", password: "helloworld") }
+  let(:user) { User.create!(email: "user@blocipedia.com", password: "helloworld", role: "admin") }
   let(:my_wiki) { Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
 
   describe "GET index" do

@@ -3,7 +3,8 @@
     <tr>
       <th>Wiki Title</th>
       <th>Edit Wiki</th>
-      <th>Delete Wiki</ht>
+      <th>Delete Wiki</th>
+      <th>Wiki User</th>
     </tr>
   </thead>
 
@@ -15,6 +16,7 @@
           <td><%= link_to wiki.title, wiki %></td>
           <td><%= link_to "Edit", edit_wiki_path(wiki), class: 'btn btn-success btn-sm' %></td>
           <td><%= link_to "Delete", [wiki], method: :delete, class: 'btn btn-danger btn-sm', data: {confirm: 'Are you sure you want to delete this wiki?'} %></td>
+          <td><%= wiki.user.email %></td>
         <% end %>
       </tr>
     </tbody>
