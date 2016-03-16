@@ -1,5 +1,5 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :user, :wiki
 
   def initialize(user, wiki)
     @user = user
@@ -15,23 +15,23 @@ class ApplicationPolicy
   end
 
   def create?
-    @user.role == "premium" || @user.role == "admin"
+    @user
   end
 
   def new?
-    @user.role == "premium" || @user.role == "admin"
+    @user
   end
 
   def update?
-    (@user.role == "premium" && @wiki.user == @user) || @user.role == "admin"
+    @user
   end
 
   def edit?
-    (@user.role == "premium" && @wiki.user == @user) || @user.role == "admin"
+    @user
   end
 
   def destroy?
-    (@user.role == "premium" && @wiki.user == @user) || @user.role == "admin"
+    @user
   end
 
   def scope
