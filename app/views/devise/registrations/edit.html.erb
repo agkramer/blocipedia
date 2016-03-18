@@ -35,7 +35,18 @@
 <% if current_user.role == "standard" %>
   <h3>Upgrade my account</h3>
   <p>Want to create private wikis?  Hold for click here button!!</p>
-  <!-- button for "Upgrade to premium" with stripe -->
+  <%= form_tag charges_path do %>
+    <h4>Click here to upgrade!</h4>
+    <%= button_to "Upgrade my account", new_charge_path, class: 'btn btn-info' %>
+  <% end %>
+<% end %>
+
+<% if current_user.role == "premium" %>
+  <h3>Downgrade my account</h3>
+  <p>No longer want to create private wikis?  Hold for click here button!!</p>
+  <%= form_tag charges_path do %>
+    <h4>Click here to downgrade!</h4>
+  <% end %>
 <% end %>
 
 <h3>Cancel my account</h3>
