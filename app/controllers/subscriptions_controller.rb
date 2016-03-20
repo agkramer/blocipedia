@@ -1,4 +1,4 @@
-class ChargesController < ApplicationController
+class SubscriptionsController < ApplicationController
   def new
     @stripe_btn_data = {
      key: "#{ Rails.configuration.stripe[:publishable_key] }",
@@ -23,10 +23,8 @@ class ChargesController < ApplicationController
     currency: 'usd'
     )
 
-
     current_user.update_attributes(role: "premium")
-    # current_user.role = "premium"
-    # current_user.save
+
     flash[:notice] = "Thanks for upgrading, #{current_user.email}!  Hope you enjoy!"
     redirect_to wikis_path # or wherever
 
@@ -35,6 +33,19 @@ class ChargesController < ApplicationController
     # This `rescue block` catches and displays those errors.
   rescue Stripe::CardError => e
     flash.now[:alert] = e.message
-    redirect_to new_charge_path
+    redirect_to new_subscription_path
+  end
+
+  def destroy
+    current_user.update_attributes(role: "standard")
+
+    if user.save
+      flash[:notice] = "You have successfully downgraded, #{current_user.email}!  Sorry to see you go :("
+      redirect_to wikis_path
+    else
+      flash.now[:alert] = "There was an issue downgrading your account, please try again."
+      redirect_to edit_user_regsitration_path
+    end
+
   end
 end

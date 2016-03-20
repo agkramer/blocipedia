@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :collaborations
-
   devise_for :users
 
   resources :wikis
-
+  resources :subscriptions, only: [:new, :create, :delete, :destroy]
+  resources :collaborations
   resources :charges, only: [:new, :create]
 
   get 'about' => 'welcome#about'

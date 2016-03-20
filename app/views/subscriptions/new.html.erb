@@ -1,7 +1,7 @@
 <% if current_user.role == "standard" %>
   <h3>Upgrade my account</h3>
   <p>Want to create private wikis?  Upgrade your account for $15 today!</p>
-  <%= form_tag charges_path do %>
+  <%= form_tag subscriptions_path do %>
     <h4>Click here to upgrade!</h4>
     <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount=<%= @stripe_btn_data[:amount] %> data-description="<%= @stripe_btn_data[:description] %>" ></script>
   <% end %>
