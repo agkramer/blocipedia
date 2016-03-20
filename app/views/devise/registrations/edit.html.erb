@@ -42,11 +42,8 @@
 
 <% if current_user.role == "premium" %>
   <h3>Downgrade my account</h3>
-  <p>No longer want to create private wikis?  Hold for click here button!!</p>
-  <%= form_tag subscriptions_path do %>
-    <h4>Click here to downgrade.</h4>
-    <%= button_to "Downgrade my account", subscription_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-info' %></p>
-  <% end %>
+  <p>No longer want to create private wikis?  Click here to downgrade your account.</p>
+  <%= button_to "Downgrade my account", subscriptions_path, data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-info' %></p>
 <% end %>
 
 <h3>Cancel my account</h3>
