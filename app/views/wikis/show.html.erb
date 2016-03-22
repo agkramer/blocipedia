@@ -8,3 +8,13 @@
 
 <%= link_to "Edit Wiki", edit_wiki_path, class: 'btn btn-success' %>
 <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this wiki?' } %>
+
+<% if @wiki.private? %>
+  <h4>Collaborators</h4>
+  <% @wiki.users_as_collaborator.each do |user| %>
+    <%= user.email %><br>
+  <% end %>
+  </br>
+
+  <%= render partial: 'collaborations/collaboration', locals: { wiki: @wiki } %>
+<% end %>

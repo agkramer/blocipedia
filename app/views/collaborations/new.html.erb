@@ -1,6 +1,0 @@
-<h1>Collaborators#new</h1>
-
-
-<%= form_for Collaboration.new do |f| %>
-  <%= f.collection_select :user_id, User.all, :id, :email %>
-<% end %>

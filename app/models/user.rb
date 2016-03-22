@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
 
   after_initialize { self.role ||= "standard" }
 
+  scope :not_collaborator_yet,  -> (wiki) do
+    collaborators = Collaboration.where(wiki_id: wiki.id).pluck(:user_id)
+
+
+    User.where("id not in(?)", collaborators)
+  end
+
   ROLES = %w[standard premium admin]
 
 end
