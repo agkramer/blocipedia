@@ -37,9 +37,11 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    # return unless current_user.id == params[:id]
+
     current_user.update_attributes(role: "standard")
 
-    if user.save
+    unless current_user.errors.any?
       flash[:notice] = "You have successfully downgraded, #{current_user.email}!  Sorry to see you go :("
       redirect_to wikis_path
     else

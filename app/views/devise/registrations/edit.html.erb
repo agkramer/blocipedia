@@ -47,6 +47,9 @@
     <h4>Click here to downgrade.</h4>
     <%= button_to "Downgrade my account", subscription_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-info' %></p>
   <% end %>
+
+
+  <%= link_to  "Downgrade my account", subscription_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-info' %>
 <% end %>
 
 <h3>Cancel my account</h3>
