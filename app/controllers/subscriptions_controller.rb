@@ -39,6 +39,10 @@ class SubscriptionsController < ApplicationController
   def destroy
     current_user.update_attributes(role: "standard")
 
+    current_user.wikis.each do |wiki|
+      wiki.update_attributes(private: false)
+    end
+
     unless current_user.errors.any?
       flash[:notice] = "You have successfully downgraded, #{current_user.email}!  Sorry to see you go :("
       redirect_to wikis_path

@@ -11,9 +11,11 @@
 
 <% if @wiki.private? %>
   <h4>Collaborators</h4>
-  <% @wiki.users_as_collaborator.each do |user| %>
-    <%= user.email %></br>
-  <% end %>
+  <% @wiki.collaborations.each do |collaboration| %>
+    <%= collaboration.user.email %>
+    <%= collaboration.id %>
+    <%= link_to "Remove", wiki_collaboration_path(@wiki, collaboration), method: :delete, data: { confirm: 'Are you sure?' } %></br>
+    <% end %>
   </br>
 
   <%= render partial: 'collaborations/collaboration', locals: { wiki: @wiki } %>

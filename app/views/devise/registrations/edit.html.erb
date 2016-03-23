@@ -45,7 +45,7 @@
   <p>No longer want to create private wikis?</p>
   <%= form_tag subscriptions_path do %>
     <h4>Click here to downgrade.</h4>
-    <%= link_to  "Downgrade my account", subscription_path(current_user), data: { confirm: "Are you sure? You will no longer be able to create private wikis, and all of your private wikis will become public." }, method: :delete, class: 'btn btn-info' %>
+    <%= link_to "Downgrade my account", subscription_path(current_user), data: { confirm: "Are you sure? You will no longer be able to create private wikis, and all of your private wikis will become public." }, method: :delete, class: 'btn btn-info' %>
   <% end %>
 <% end %>
 
