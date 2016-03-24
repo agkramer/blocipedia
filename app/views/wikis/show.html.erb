@@ -13,7 +13,6 @@
   <h4>Collaborators</h4>
   <% @wiki.collaborations.each do |collaboration| %>
     <%= collaboration.user.email %>
-    <%= collaboration.id %>
     <%= link_to "Remove", wiki_collaboration_path(@wiki, collaboration), method: :delete, data: { confirm: 'Are you sure?' } %></br>
     <% end %>
   </br>
